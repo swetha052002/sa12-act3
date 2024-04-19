@@ -3,8 +3,7 @@ require 'json'
 
 def fetch_exchange_rate(source_currency, target_currency)
   response = HTTParty.get("https://api.exchangerate-api.com/v4/latest/#{source_currency}")
-  exchange_rates = JSON.parse(response.body)['rates']
-  exchange_rates[target_currency]
+  JSON.parse(response.body)['rates'][target_currency]
 end
 
 def convert_currency(amount, source_currency, target_currency)

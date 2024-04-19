@@ -1,9 +1,8 @@
 require 'httparty'
 require 'json'
 
-def fetch_weather_data(city)
-  response = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=1c47f0020eeedd6ae8d021698293fb27
-  ")
+def fetch_weather_data(city, api_key)
+  response = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=#{api_key}")
   JSON.parse(response.body)
 end
 
@@ -26,7 +25,8 @@ def display_weather_information(weather_data, city)
 end
 
 city = ARGV[0]
-weather_data = fetch_weather_data(city)
+api_key = 'YOUR_API_KEY' # Replace 'YOUR_API_KEY' with your actual OpenWeatherMap API key
+weather_data = fetch_weather_data(city, api_key)
 average_temperature = calculate_average_temperature(weather_data)
 display_weather_information(weather_data, city)
 puts "Average temperature over the period: #{average_temperature}K"

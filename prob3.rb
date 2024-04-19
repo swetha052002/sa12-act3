@@ -8,14 +8,17 @@ end
 
 def display_event_info(events)
   events.each do |event|
-    puts "Name: #{event['name']['text']}"
-    puts "Venue: #{event['venue']['name']}"
+    puts "Event: #{event['name']['text']}"
+    puts "Location: #{event['venue']['name']}"
     puts "Date: #{event['start']['local']}"
     puts "----------------------------------------"
   end
 end
 
 api_key = 'your_eventbrite_api_key'
+
 city = ARGV[0]
+
+
 events = fetch_events(api_key, city)
 display_event_info(events)
